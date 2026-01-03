@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Alayn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.3);
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 50px;
+            border-radius: 30px;
+            max-width: 700px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .greeting {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: #764ba2;
+            text-align: center;
+            margin-bottom: 40px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .phrase {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #333;
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+        }
+
+        .phrase.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .phrase:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .romantic {
+            font-family: 'Dancing Script', cursive;
+            color: #764ba2;
+            font-size: 1.5em;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2em;
+            color: #667eea;
+            text-align: right;
+            margin-top: 50px;
+            animation: slideIn 1s ease-out 2s both;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .sparkle {
+            display: inline-block;
+            animation: sparkle 1.5s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <h1 class="greeting">Alayn esto era lo que realmente te quería decir...</h1>
+        
+        <div class="phrase">
+            Hay momentos en la vida donde las palabras parecen insuficientes, pero contigo cada palabra cobra un significado especial.
+        </div>
+        
+        <div class="phrase romantic">
+            <span class="sparkle">✨</span> Eres la razón por la que mis días tienen color y mis noches tienen estrellas. <span class="sparkle">✨</span>
+        </div>
+        
+        <div class="phrase">
+            En un mundo lleno de incertidumbres, tú eres mi certeza más hermosa, mi refugio y mi aventura al mismo tiempo.
+        </div>
+        
+        <div class="phrase romantic">
+            <span class="sparkle">💫</span> Cada sonrisa tuya es un poema que no necesita palabras, cada mirada un universo que quiero explorar. <span class="sparkle">💫</span>
+        </div>
+        
+        <div class="phrase">
+            Me enseñaste que el amor no es solo una palabra, es cada pequeño detalle, cada risa compartida, cada momento a tu lado.
+        </div>
+        
+        <div class="phrase romantic">
+            <span class="sparkle">❤️</span> Contigo aprendí que la felicidad no se busca, se construye, día a día, contigo. <span class="sparkle">❤️</span>
+        </div>
+        
+        <div class="phrase">
+            Gracias por ser tú, por permitirme ser parte de tu vida y por hacer de la mía algo extraordinario.
+        </div>
+        
+        <div class="signature">
+            Con todo mi cocoró, tu Francito ❤️
+        </div>
+    </div>
+
+    <script>
+        // Crear corazones flotantes
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            document.getElementById('hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 20000);
+        }
+
+        // Crear múltiples corazones
+        for (let i = 0; i < 15; i++) {
+            setTimeout(createHeart, i * 1000);
+        }
+
+        setInterval(createHeart, 2000);
+
+        // Animación de aparición de frases
+        const phrases = document.querySelectorAll('.phrase');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        phrases.forEach((phrase, index) => {
+            setTimeout(() => {
+                phrase.classList.add('visible');
+            }, index * 300);
+            observer.observe(phrase);
+        });
+    </script>
+</body>
+</html>
